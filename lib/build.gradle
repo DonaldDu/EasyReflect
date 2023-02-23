@@ -28,6 +28,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures.buildConfig = false
 }
 
 mavenPublish("com.github.DonaldDu:${rootProject.name}:0.1")
