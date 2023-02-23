@@ -42,3 +42,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def req = details.requested
+        if (req.group == 'org.jetbrains.kotlin') {
+            details.useVersion(kotlin_version)
+        }
+    }
+}
