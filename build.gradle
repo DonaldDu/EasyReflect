@@ -1,0 +1,30 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.5.20'
+    ext.app_kotlin_version = '1.5.20'
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.4.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        if (project.hasProperty('apkUploaderClasspath')) with(apkUploaderClasspath)
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+    }
+    tasks.withType(Javadoc) {
+        enabled = false
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+apply from: "https://gitee.com/DonaldDu/OpenGradleScript/raw/master/mavenPublish.gradle"
